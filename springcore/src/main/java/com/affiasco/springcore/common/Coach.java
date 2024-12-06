@@ -1,4 +1,4 @@
-package com.affiasco.springcore;
+package com.affiasco.springcore.common;
 
 public interface Coach {
     String getDailyWorkout();
