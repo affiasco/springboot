@@ -26,6 +26,8 @@ public class DemoController {
         anotherCoach = theAnotherCoach;
     }
 
+
+
 //  singleton == true, prototype == false
     @GetMapping("/check")
     public String check() {
