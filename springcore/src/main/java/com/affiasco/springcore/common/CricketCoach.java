@@ -1,4 +1,4 @@
-package com.affiasco.springcore;
+package com.affiasco.springcore.common;
 
 import org.springframework.stereotype.Component;
 
