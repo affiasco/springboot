@@ -10,6 +10,13 @@ public class DemoController {
 
     private Coach myCoach;
 
+//  Setter Injection
+//    @Autowired
+//    public void setCoach(Coach theCoach) {
+//        myCoach = theCoach;
+//    }
+
+//    Constructor Injection
     @Autowired
     public DemoController(Coach theCoach) {
         myCoach = theCoach;
