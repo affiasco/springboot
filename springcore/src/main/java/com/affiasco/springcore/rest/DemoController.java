@@ -10,17 +10,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     private Coach myCoach;
+    private Coach anotherCoach;
 
-//  Setter Injection
+//    Setter Injection
 //    @Autowired
 //    public void setCoach(@Qualifier("baseballCoach") Coach theCoach) {
 //        myCoach = theCoach;
 //    }
 
-//    Constructor Injection
+//  Constructor Injection
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach,
+                          @Qualifier("cricketCoach") Coach theAnotherCoach) {
         myCoach = theCoach;
+        anotherCoach = theAnotherCoach;
+    }
+
+//  singleton == true, prototype == false
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
     }
 
     @GetMapping("/dailyworkout")
