@@ -21,12 +21,10 @@ public class DemoController {
 //  Constructor Injection
     @Autowired
     public DemoController(@Qualifier("cricketCoach") Coach theCoach,
-                          @Qualifier("cricketCoach") Coach theAnotherCoach) {
+                          @Qualifier("swimCoach") Coach theAnotherCoach) {
         myCoach = theCoach;
         anotherCoach = theAnotherCoach;
     }
-
-
 
 //  singleton == true, prototype == false
     @GetMapping("/check")
@@ -36,6 +34,6 @@ public class DemoController {
 
     @GetMapping("/dailyworkout")
     public String dailyWorkout() {
-        return myCoach.getDailyWorkout();
+        return "First workout: " + myCoach.getDailyWorkout() + "; Second workout: " + anotherCoach.getDailyWorkout();
     }
 }
