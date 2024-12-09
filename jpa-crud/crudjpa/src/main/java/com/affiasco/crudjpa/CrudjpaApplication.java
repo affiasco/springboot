@@ -24,8 +24,22 @@ public class CrudjpaApplication {
 
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
-            queryForStudentsByLastName(studentDAO);
+//            queryForStudentsByLastName(studentDAO);
+            updateStudent(studentDAO);
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        int studentId = 1;
+
+        Student theStudent = studentDAO.findById(studentId);
+        System.out.println("Getting student with id " + studentId);
+
+        System.out.println("Updating the first name");
+        theStudent.setFirstName("Jeff");
+
+        studentDAO.update(theStudent);
+        System.out.println("Updated Student " + theStudent);
     }
 
     private void queryForStudents(StudentDAO studentDAO) {
