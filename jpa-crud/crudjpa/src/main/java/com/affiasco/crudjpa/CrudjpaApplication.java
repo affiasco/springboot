@@ -18,8 +18,27 @@ public class CrudjpaApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
 //            createStudent(studentDAO);
-            createMultipleStudents(studentDAO);
+//            createMultipleStudents(studentDAO);
+
+            readStudent(studentDAO);
         };
+    }
+
+    private void readStudent(StudentDAO studentDAO) {
+        System.out.println("Creating student...");
+        Student tempStudent = new Student("Daffy", "Duck", "duck@daffy.com");
+
+        System.out.println("Saving student...");
+        studentDAO.save(tempStudent);
+
+        int id = tempStudent.getId();
+        System.out.println("Saved student. Generated id: " + id);
+
+
+        System.out.println("Retrieving student...");
+        Student myStudent = studentDAO.findById(id);
+
+        System.out.println("Retrieved student: " + myStudent);
     }
 
     private void createStudent(StudentDAO studentDAO) {
