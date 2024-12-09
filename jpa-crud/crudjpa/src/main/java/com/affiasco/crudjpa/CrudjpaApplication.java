@@ -23,13 +23,21 @@ public class CrudjpaApplication {
 //            createMultipleStudents(studentDAO);
 
 //            readStudent(studentDAO);
-            queryForStudents(studentDAO);
+//            queryForStudents(studentDAO);
+            queryForStudentsByLastName(studentDAO);
         };
     }
 
     private void queryForStudents(StudentDAO studentDAO) {
         List<Student> students = studentDAO.findAll();
-        for( Student student : students ) {
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+
+    private void queryForStudentsByLastName(StudentDAO studentDAO) {
+        List<Student> students = studentDAO.findByLastName("Ripper");
+        for (Student student : students) {
             System.out.println(student);
         }
     }
