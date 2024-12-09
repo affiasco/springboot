@@ -20,14 +20,16 @@ public class CrudjpaApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
 //            createStudent(studentDAO);
-//            createMultipleStudents(studentDAO);
+            createMultipleStudents(studentDAO);
 
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
 //            queryForStudentsByLastName(studentDAO);
+
 //            updateStudent(studentDAO);
+
 //            deleteStudent(studentDAO);
-            deleteAllStudents(studentDAO);
+//            deleteAllStudents(studentDAO);
         };
     }
 
@@ -36,7 +38,7 @@ public class CrudjpaApplication {
         System.out.println(studentDAO.deleteAll());
     }
 
-    private void deleteStudent(StudentDAO studentDAO){
+    private void deleteStudent(StudentDAO studentDAO) {
         int studentId = 3;
 
         System.out.println("Deleting StudentId... " + studentId);
@@ -79,7 +81,6 @@ public class CrudjpaApplication {
 
         int id = tempStudent.getId();
         System.out.println("Saved student. Generated id: " + id);
-
 
         System.out.println("Retrieving student...");
         Student myStudent = studentDAO.findById(id);
