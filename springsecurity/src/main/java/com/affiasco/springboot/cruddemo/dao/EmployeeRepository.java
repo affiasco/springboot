@@ -1,6 +1,6 @@
-package com.luv2code.springboot.cruddemo.dao;
+package com.affiasco.springboot.cruddemo.dao;
 
-import com.luv2code.springboot.cruddemo.entity.Employee;
+import com.affiasco.springboot.cruddemo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
