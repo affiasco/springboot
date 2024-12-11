@@ -1,5 +1,7 @@
 CREATE DATABASE IF NOT EXISTS `employee_directory`;
-USE `employee_directory` DROP TABLE IF EXISTS `employee` CREATE TABLE `employee` (
+USE `employee_directory`;
+DROP TABLE IF EXISTS `employee`;
+ CREATE TABLE `employee` (
     `id` int NOT NULL AUTO_INCREMENT,
     `first_name` varchar(45) DEFAULT NULL,
     `last_name` varchar(45) DEFAULT NULL,
@@ -12,5 +14,5 @@ VALUES (
         (2, 'Emma', 'Baumgarten', 'emma@gmail.com'),
         (3, 'Avani', 'Gupta', 'avani@gmail.com'),
         (4, 'Yuri', 'Petrov', 'yuri@gmail.com'),
-        (5, 'Juan', 'Vega', 'juan@gmail.com');
-)
+        (5, 'Juan', 'Vega', 'juan@gmail.com')
+);
