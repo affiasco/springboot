@@ -1,42 +1,46 @@
 package com.affiasco.empdir.service;
 
-import com.affiasco.empdir.dao.EmployeeDAO;
+import com.affiasco.empdir.dao.EmployeeRepository;
 import com.affiasco.empdir.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
-        employeeDAO = theEmployeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository EmployeeRepository) {
+        employeeRepository = EmployeeRepository;
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
     }
 
     @Override
     public Employee findById(int employeeId) {
-        return employeeDAO.findById(employeeId);
+        Optional<Employee> result = employeeRepository.findById(employeeId);
+
+        if (result.isPresent()) {
+            return result.get();
+        } else {
+            throw new RuntimeException("Did not find employee id: " + employeeId);
+        }
     }
 
     @Override
-    @Transactional
     public Employee save(Employee theEmployee) {
-        return employeeDAO.save(theEmployee);
+        return employeeRepository.save(theEmployee);
     }
 
     @Override
-    @Transactional
     public void deleteById(int employeeId) {
-        employeeDAO.deleteById(employeeId);
+        employeeRepository.deleteById(employeeId);
     }
 }
