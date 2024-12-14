@@ -17,6 +17,19 @@
     <!-- * so you dont have to give full object.fieldName (student.lastName) -->
     Last name: <input type="text" th:field="*{lastName}">
 
+    <br>
+    <br>
+
+    <select th:field="*{country}">
+        <option name="country" id="br" th:value="Brazil">Brazil</option>
+        <option name="country" id="fr" th:value="France">France</option>
+        <option name="country" id="de" th:value="Germany">Germany</option>
+        <option name="country" id="in" th:value="India">India</option>
+    </select>
+
+    <br>
+    <br>
+
     <input type="submit" value="Submit">
 </form>
 

@@ -25,7 +25,7 @@ public class StudentController {
     @PostMapping("/processStudentForm")
     // bind modelAttribute to param being passed in, so fills in the student object with the information
     public String processForm(@ModelAttribute("student") Student theStudent) {
-        System.out.println("theStudent: " + theStudent.getFirstName() + " " + theStudent.getLastName());
+        System.out.println("theStudent: " + theStudent.getFirstName() + " " + theStudent.getLastName() + " " + theStudent.getCountry());
         return "student-confirmation";
     }
 }
