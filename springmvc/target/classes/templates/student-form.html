@@ -17,8 +17,7 @@
     <!-- * so you dont have to give full object.fieldName (student.lastName) -->
     Last name: <input type="text" th:field="*{lastName}">
 
-    <br>
-    <br>
+    <br><br>
 
     <select th:field="*{country}">
         <!-- hard coded option -->
@@ -26,8 +25,7 @@
         <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
     </select>
 
-    <br>
-    <br>
+    <br><br>
 
     Favorite Programming Language:
     <!-- hard coded option -->
@@ -40,8 +38,11 @@
            th:text="${lang}"
     />
 
-    <br>
-    <br>
+    <br><br>
+    Favorite Operating Systems:
+    <input type="checkbox" th:field="*{favoriteSystems}" th:each="sys : ${systems}" th:value="${sys}" th:text="${sys}">
+
+    <br><br>
 
     <input type="submit" value="Submit">
 </form>

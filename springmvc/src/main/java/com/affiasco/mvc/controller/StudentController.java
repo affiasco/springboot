@@ -18,8 +18,11 @@ public class StudentController {
     @Value("${languages}")
     private List<String> languages;
 
+    @Value("${systems}")
+    private List<String> systems;
+
     @GetMapping("/showStudentForm")
-    public String showForm(Model theModel){
+    public String showForm(Model theModel) {
 
         // create new student object
         Student theStudent = new Student();
@@ -28,6 +31,7 @@ public class StudentController {
         theModel.addAttribute("student", theStudent);
         theModel.addAttribute("countries", countries);
         theModel.addAttribute("languages", languages);
+        theModel.addAttribute("systems", systems);
 
         return "student-form";
     }
@@ -35,7 +39,6 @@ public class StudentController {
     @PostMapping("/processStudentForm")
     // bind modelAttribute to param being passed in, so fills in the student object with the information
     public String processForm(@ModelAttribute("student") Student theStudent) {
-        System.out.println("theStudent: " + theStudent.getFirstName() + " " + theStudent.getLastName() + " " + theStudent.getCountry());
         return "student-confirmation";
     }
 }

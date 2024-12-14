@@ -17,6 +17,7 @@ The student is confirmed:
     <li th:text="'Last Name: ' + ${student.lastName}"></li>
     <li th:text="'From: ' + ${student.country}"></li>
     <li th:text="'Favorite Language: ' + ${student.favoriteLanguage}"></li>
+    <li>Favorite systems: <span th:each="sys : ${student.favoriteSystems}" th:text="${sys + ' '}"></span></li>
 </ul>
 </body>
 </html>
