@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<p th:text="'Time on the server is ' + ${theDate}" class="funny"></p>
-
+<!-- .studentName is the name of the formfield in the other html file -->
+<p>Student name: <span th:text="${param.studentName}"></span></p>
 </body>
 </html>
