@@ -1,5 +1,6 @@
 package com.affiasco.mvc.model;
 
+import com.affiasco.mvc.validation.CustomerCode;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -22,14 +23,10 @@ public class Customer {
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 chars/digits")
     private String postalCode;
 
-    public Customer() {
-    }
+    @CustomerCode(value="FIO", message="must start with FIO")
+    private String customerCode;
 
-    public Customer(String firstName, String lastName, int freePasses, String postalCode) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.freePasses = freePasses;
-        this.postalCode = postalCode;
+    public Customer() {
     }
 
     public String getFirstName() {
@@ -64,5 +61,11 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
+    public String getCustomerCode() {
+        return customerCode;
+    }
 
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
+    }
 }

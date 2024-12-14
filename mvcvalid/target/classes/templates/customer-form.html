@@ -38,6 +38,10 @@ Fill out form, anything with * is required
 
     <br><br>
 
+    Customer Code: <input type="text" th:field="*{customerCode}">
+    <span th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}" class="error"></span>
+    <br><br>
+
     <input type="submit" value="Submit"/>
 </form>
 
