@@ -21,10 +21,9 @@
     <br>
 
     <select th:field="*{country}">
-        <option name="country" id="br" th:value="Brazil">Brazil</option>
-        <option name="country" id="fr" th:value="France">France</option>
-        <option name="country" id="de" th:value="Germany">Germany</option>
-        <option name="country" id="in" th:value="India">India</option>
+        <!--        hard coded option-->
+        <!--        <option name="country" id="br" th:value="Brazil">Brazil</option>-->
+        <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
     </select>
 
     <br>
