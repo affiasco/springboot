@@ -21,10 +21,24 @@
     <br>
 
     <select th:field="*{country}">
-        <!--        hard coded option-->
-        <!--        <option name="country" id="br" th:value="Brazil">Brazil</option>-->
+        <!-- hard coded option -->
+        <!-- <option name="country" id="br" th:value="Brazil">Brazil</option> -->
         <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
     </select>
+
+    <br>
+    <br>
+
+    Favorite Programming Language:
+    <!-- hard coded option -->
+    <!-- <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python-->
+
+    <input type="radio"
+           th:field="*{favoriteLanguage}"
+           th:each="lang : ${languages}"
+           th:value="${lang}"
+           th:text="${lang}"
+    />
 
     <br>
     <br>
