@@ -9,15 +9,21 @@
 </head>
 <body>
 
-<!-- @ dynamically references the context path of the application -->
-<form action="#" th:action="@{/authenticateTheUser}">
+<h3>Login Page</h3>
+
+<!-- @ dynamically references the context path of the application, given path matches that provided in sec config -->
+<form action="#" th:action="@{/authenticateTheUser}" method="POST">
     <p>
-        Username: <input type="text" name="username">
+        <!-- with security filter setup having name set here will allow hte security filter to read the form data -->
+        Username: <input type="text" name="username"/>
     </p>
 
     <p>
-        Password: <input type="text" name="password">
+        <!-- with security filter setup having name set here will allow hte security filter to read the form data -->
+        Password: <input type="text" name="password"/>
     </p>
+
+    <input type="submit" value="Login"/>
 
 </form>
 
