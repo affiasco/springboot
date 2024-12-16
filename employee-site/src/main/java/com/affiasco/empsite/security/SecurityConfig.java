@@ -52,14 +52,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public DaoAuthenticationProvider authProvider(UserService userService) {
-        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService);
-        auth.setPasswordEncoder(passwordEncoder());
-        return auth;
-    }
-
     // in memory auth, does not user application.properties information
 //    @Bean
 //    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
