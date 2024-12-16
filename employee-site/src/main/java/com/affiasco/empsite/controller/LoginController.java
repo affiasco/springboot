@@ -9,6 +9,6 @@ public class LoginController {
     // matches the spring security methods .login param
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage() {
-        return "plain-login";
+        return "fancy-login";
     }
 }
