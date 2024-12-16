@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+</head>
+<body>
+
+<h3>Login Page</h3>
+
+<!-- @ dynamically references the context path of the application, given path matches that provided in sec config -->
+<form action="#" th:action="@{/authenticateTheUser}" method="POST">
+
+    <!-- check for login error -->
+    <div style="color:red" th:if="${param.error}">
+        <i>Sorry! You've entered an invalid username/password</i>
+    </div>
+
+    <p>
+        <!-- with security filter setup having name set here will allow hte security filter to read the form data -->
+        Username: <input type="text" name="username"/>
+    </p>
+
+    <p>
+        <!-- with security filter setup having name set here will allow hte security filter to read the form data -->
+        Password: <input type="password" name="password"/>
+    </p>
+
+    <input type="submit" value="Login"/>
+
+</form>
+
+</body>
+</html>
