@@ -13,6 +13,12 @@
 
 <!-- @ dynamically references the context path of the application, given path matches that provided in sec config -->
 <form action="#" th:action="@{/authenticateTheUser}" method="POST">
+
+    <!-- check for login error -->
+    <div style="color:red" th:if="${param.error}">
+        <i>Sorry! You've entered an invalid username/password</i>
+    </div>
+
     <p>
         <!-- with security filter setup having name set here will allow hte security filter to read the form data -->
         Username: <input type="text" name="username"/>
@@ -20,7 +26,7 @@
 
     <p>
         <!-- with security filter setup having name set here will allow hte security filter to read the form data -->
-        Password: <input type="text" name="password"/>
+        Password: <input type="password" name="password"/>
     </p>
 
     <input type="submit" value="Login"/>
