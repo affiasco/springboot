@@ -32,7 +32,10 @@ public class SecurityConfig {
                         .loginPage("/showMyLoginPage")              // gives the route to login page (set in the controller)
                         .loginProcessingUrl("/authenticateTheUser") // route for the login form to POST data to (to check un/pw), no controller required
                         .permitAll()                                // everyone can access the login page even without logging in
+                )
+                .logout(logout -> logout.permitAll()
                 );
+
 
         return http.build();
     }
