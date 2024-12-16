@@ -25,19 +25,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        // this checks that every request coming in must be authenticated
+
         http.authorizeHttpRequests(configurer ->
                         configurer
+                                // gives permissions to view certain routes based on role
                                 .requestMatchers("/").hasRole("EMPLOYEE")
                                 .requestMatchers("/leaders/**").hasRole("MANAGER")
                                 .requestMatchers("/systems/**").hasRole("ADMIN")
+                                // this checks that every request coming in must be authenticated
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
-                        .loginPage("/showMyLoginPage")              // gives the route to login page (set in the controller)
-                        .loginProcessingUrl("/authenticateTheUser") // route for the login form to POST data to (to check un/pw), no controller required
-                        .permitAll()                                // everyone can access the login page even without logging in
+                        .loginPage("/showMyLoginPage")               // gives the route to login page (set in the controller)
+                        .loginProcessingUrl("/authenticateTheUser")  // route for the login form to POST data to (to check un/pw), no controller required
+                        .permitAll()                                 // everyone can access the login page even without logging in
                 )
-                .logout(logout -> logout.permitAll()
+                .logout(logout -> logout.permitAll() // sets up /logout route and for everyone to see it
                 );
 
 
