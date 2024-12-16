@@ -2,10 +2,12 @@ package com.affiasco.empsite.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -24,7 +26,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationSuccessHandler customAuthenticationSuccessHandler)
+            throws Exception {
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 // gives permissions to view certain routes based on role
@@ -34,9 +37,10 @@ public class SecurityConfig {
                                 // this checks that every request coming in must be authenticated
                                 .anyRequest().authenticated())
                 .formLogin(form -> form
-                        .loginPage("/showMyLoginPage")               // gives the route to login page (set in the controller)
-                        .loginProcessingUrl("/authenticateTheUser")  // route for the login form to POST data to (to check un/pw), no controller required
-                        .permitAll()                                 // everyone can access the login page even without logging in
+                        .loginPage("/showMyLoginPage")                      // gives the route to login page (set in the controller)
+                        .loginProcessingUrl("/authenticateTheUser")         // route for the login form to POST data to (to check un/pw), no controller required
+                        .successHandler(customAuthenticationSuccessHandler) // tells spring to execute the customAuthHandler for each successful login
+                        .permitAll()                                        // everyone can access the login page even without logging in
                 )
                 .logout(logout -> logout.permitAll() // sets up /logout route and for everyone to see it
                 )
@@ -46,6 +50,14 @@ public class SecurityConfig {
 
 
         return http.build();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authProvider(UserService userService) {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(userService);
+        auth.setPasswordEncoder(passwordEncoder());
+        return auth;
     }
 
     // in memory auth, does not user application.properties information
