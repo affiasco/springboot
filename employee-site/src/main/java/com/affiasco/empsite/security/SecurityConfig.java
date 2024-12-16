@@ -40,6 +40,9 @@ public class SecurityConfig {
                         .permitAll()                                 // everyone can access the login page even without logging in
                 )
                 .logout(logout -> logout.permitAll() // sets up /logout route and for everyone to see it
+                )
+                // when access is denied to a role this is the returned view
+                .exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied")
                 );
 
 
