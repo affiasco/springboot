@@ -14,7 +14,13 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) { // datasource injected and autoconfigured by spring
-            return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager udm = new JdbcUserDetailsManager(dataSource);
+
+        // ? is param sent by login form
+        udm.setUsersByUsernameQuery("select user_id, pw, active from members where user_id=?");
+        udm.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+
+        return udm;
     }
 
     @Bean
