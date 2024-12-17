@@ -21,8 +21,17 @@ public class AdvmapApplication {
         return runner -> {
             System.out.println("Hello from runner");
 //            createInstructor(appDAO);
-            findInstructor(appDAO);
+//            findInstructor(appDAO);
+            deleteInstructor(appDAO);
         };
+    }
+
+    private void deleteInstructor(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Deleting Instructor, id: " + theId);
+
+        appDAO.deleteInstructorById(theId);
+        System.out.println("Delete complete");
     }
 
     private void findInstructor(AppDAO appDAO) {
@@ -44,7 +53,6 @@ public class AdvmapApplication {
         appDAO.save(ti); // also saves the details object because of CascadeType.ALL
 
         System.out.println("Instructor Saved");
-
     }
 
 }
