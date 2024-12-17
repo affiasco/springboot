@@ -3,11 +3,11 @@ package com.affiasco.advmap.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "instructor_detail") // map to specific table in db
+@Table(name = "instructor_detail")
 public class InstructorDetail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // helps with auto increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -17,10 +17,11 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL) // set bidirectional relationship. References Instructor.instructorDetail
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
     private Instructor instructor;
 
     public InstructorDetail() {
+
     }
 
     public InstructorDetail(String youtubeChannel, String hobby) {
@@ -66,7 +67,6 @@ public class InstructorDetail {
                 "id=" + id +
                 ", youtubeChannel='" + youtubeChannel + '\'' +
                 ", hobby='" + hobby + '\'' +
-                ", instructor=" + instructor +
                 '}';
     }
 }

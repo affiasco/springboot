@@ -21,10 +21,11 @@ public class Instructor {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "instructor_detail_id") // this defines the relationship between the tables and sets the pk : fk
+    @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
     public Instructor() {
+
     }
 
     public Instructor(String firstName, String lastName, String email) {

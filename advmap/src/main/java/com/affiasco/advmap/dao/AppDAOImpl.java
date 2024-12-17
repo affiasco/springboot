@@ -1,6 +1,7 @@
 package com.affiasco.advmap.dao;
 
 import com.affiasco.advmap.entity.Instructor;
+import com.affiasco.advmap.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,5 +33,10 @@ public class AppDAOImpl implements AppDAO {
     public void deleteInstructorById(int theId) {
         Instructor ti = entityManager.find(Instructor.class, theId);
         entityManager.remove(ti); // CascadeType.ALL will also delete the instructor_Detail
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        return entityManager.find(InstructorDetail.class, theId);
     }
 }

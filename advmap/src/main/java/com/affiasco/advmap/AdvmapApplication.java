@@ -22,16 +22,20 @@ public class AdvmapApplication {
             System.out.println("Hello from runner");
 //            createInstructor(appDAO);
 //            findInstructor(appDAO);
-            deleteInstructor(appDAO);
+//            deleteInstructor(appDAO);
+
+            findInstructorDetail(appDAO);
         };
     }
 
-    private void deleteInstructor(AppDAO appDAO) {
-        int theId = 1;
-        System.out.println("Deleting Instructor, id: " + theId);
+    private void findInstructorDetail(AppDAO appDAO) {
+        int theId = 2;
 
-        appDAO.deleteInstructorById(theId);
-        System.out.println("Delete complete");
+        System.out.println("Finding instructorDetail with id: " + theId);
+        InstructorDetail tid = appDAO.findInstructorDetailById(theId);
+
+        System.out.println("ti: " + tid);
+        System.out.println("associated instructor: " + tid.getInstructor());
     }
 
     private void findInstructor(AppDAO appDAO) {
@@ -55,4 +59,11 @@ public class AdvmapApplication {
         System.out.println("Instructor Saved");
     }
 
+    private void deleteInstructor(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Deleting Instructor, id: " + theId);
+
+        appDAO.deleteInstructorById(theId);
+        System.out.println("Delete complete");
+    }
 }
