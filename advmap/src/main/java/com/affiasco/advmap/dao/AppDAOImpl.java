@@ -31,12 +31,19 @@ public class AppDAOImpl implements AppDAO {
     @Override
     @Transactional
     public void deleteInstructorById(int theId) {
-        Instructor ti = entityManager.find(Instructor.class, theId);
+        Instructor ti = findInstructorById(theId);
         entityManager.remove(ti); // CascadeType.ALL will also delete the instructor_Detail
     }
 
     @Override
     public InstructorDetail findInstructorDetailById(int theId) {
-        return entityManager.find(InstructorDetail.class, theId);
+        return entityManager.find(InstructorDetail.class, theId); // will also get instructor bc default OneToOne fetch type is eager
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorDetailById(int theId) {
+        InstructorDetail tid = findInstructorDetailById(theId);
+        entityManager.remove(tid); // CascadeType.ALL will also delete the instructor
     }
 }

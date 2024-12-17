@@ -24,8 +24,18 @@ public class AdvmapApplication {
 //            findInstructor(appDAO);
 //            deleteInstructor(appDAO);
 
-            findInstructorDetail(appDAO);
+//            findInstructorDetail(appDAO);
+            deleteInstructorDetail(appDAO);
         };
+    }
+
+    private void deleteInstructorDetail(AppDAO appDAO) {
+        int theId = 2;
+
+        System.out.println("Deleting Instructor Detail, id: " + theId);
+
+        appDAO.deleteInstructorDetailById(theId);
+        System.out.println("Delete complete");
     }
 
     private void findInstructorDetail(AppDAO appDAO) {
