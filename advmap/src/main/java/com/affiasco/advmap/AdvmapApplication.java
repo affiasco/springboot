@@ -30,7 +30,7 @@ public class AdvmapApplication {
     }
 
     private void deleteInstructorDetail(AppDAO appDAO) {
-        int theId = 2;
+        int theId = 3;
 
         System.out.println("Deleting Instructor Detail, id: " + theId);
 
