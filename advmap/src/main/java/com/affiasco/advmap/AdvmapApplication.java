@@ -20,8 +20,18 @@ public class AdvmapApplication {
 
         return runner -> {
             System.out.println("Hello from runner");
-            createInstructor(appDAO);
+//            createInstructor(appDAO);
+            findInstructor(appDAO);
         };
+    }
+
+    private void findInstructor(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Finding instructor with id: " + theId);
+
+        Instructor ti = appDAO.findInstructorById(theId);
+        System.out.println("ti: " + ti);
+        System.out.println("associated instructor details: " + ti.getInstructorDetail());
     }
 
     private void createInstructor(AppDAO appDAO) {

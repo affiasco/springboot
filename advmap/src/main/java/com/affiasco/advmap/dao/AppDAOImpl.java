@@ -21,4 +21,9 @@ public class AppDAOImpl implements AppDAO {
     public void save(Instructor theInstructor) {
         entityManager.persist(theInstructor); // because of CascadeType.ALL will also save instructor_details objects
     }
+
+    @Override
+    public Instructor findInstructorById(int theId) {
+        return entityManager.find(Instructor.class, theId); // will also get instructor_details bc default OneTOOne fetch type is eager
+    }
 }
