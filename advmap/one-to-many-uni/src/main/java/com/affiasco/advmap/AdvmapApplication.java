@@ -25,8 +25,18 @@ public class AdvmapApplication {
         return runner -> {
             System.out.println("Hello from runner");
 
-            createCourseAndReviews(appDAO);
+//            createCourseAndReviews(appDAO);
+            retrieveCourseAndReviews(appDAO);
         };
+    }
+
+    private void retrieveCourseAndReviews(AppDAO appDAO) {
+        int theId = 10;
+        Course ti = appDAO.findCourseAndReviewsbyId(theId);
+
+        System.out.println(ti);
+        System.out.println(ti.getReviews());
+        System.out.println("done");
     }
 
     private void createCourseAndReviews(AppDAO appDAO) {

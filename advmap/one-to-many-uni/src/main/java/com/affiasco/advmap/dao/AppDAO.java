@@ -31,4 +31,6 @@ public interface AppDAO {
     void deleteCourseById(int theId);
 
     void saveCourse(Course theCourse);
+
+    Course findCourseAndReviewsbyId(int theId);
 }
