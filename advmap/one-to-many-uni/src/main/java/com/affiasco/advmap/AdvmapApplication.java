@@ -23,21 +23,6 @@ public class AdvmapApplication {
 
         return runner -> {
             System.out.println("Hello from runner");
-//            createInstructor(appDAO);
-//            findInstructor(appDAO);
-//            deleteInstructor(appDAO);
-
-//            findInstructorDetail(appDAO);
-//            deleteInstructorDetail(appDAO);
-
-//            createInstructorWithCourses(appDAO);
-//            findInstructorWithCourses(appDAO);
-//            findCoursesForInstructor(appDAO);
-//            findInstructorWithCoursesJoinFetch(appDAO);
-
-//            updateInstructor(appDAO);
-//            updateCourse(appDAO);
-            deleteCourse(appDAO);
         };
     }
 
