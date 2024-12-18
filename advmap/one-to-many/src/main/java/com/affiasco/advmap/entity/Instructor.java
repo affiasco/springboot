@@ -29,7 +29,7 @@ public class Instructor {
 
 
     @OneToMany(mappedBy = "instructor", // references the instructor property in the Course class
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             // dont want to delete courses if the instructor is deleted
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 

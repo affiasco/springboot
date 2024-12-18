@@ -1,11 +1,15 @@
 package com.affiasco.advmap.dao;
 
+import com.affiasco.advmap.entity.Course;
 import com.affiasco.advmap.entity.Instructor;
 import com.affiasco.advmap.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class AppDAOImpl implements AppDAO {
@@ -49,5 +53,13 @@ public class AppDAOImpl implements AppDAO {
         tid.getInstructor().setInstructorDetail(null);
 
         entityManager.remove(tid);
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int theId) {
+        TypedQuery<Course> query = entityManager.createQuery("FROM Course WHERE instructor.id = :data", Course.class);
+        query.setParameter("data", theId);
+
+        return query.getResultList();
     }
 }

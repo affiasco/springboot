@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class AdvmapApplication {
 
@@ -29,8 +31,25 @@ public class AdvmapApplication {
 //            deleteInstructorDetail(appDAO);
 
 //            createInstructorWithCourses(appDAO);
-            findInstructorWithCourses(appDAO);
+//            findInstructorWithCourses(appDAO);
+            findCoursesForInstructor(appDAO);
         };
+    }
+
+    private void findCoursesForInstructor(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Finding instructor id: " + theId);
+
+        Instructor ti = appDAO.findInstructorById(theId);
+        System.out.println("Temp Instructor: " + ti);
+
+        System.out.println("Finding courses");
+
+        // retrieve and then set courses
+        List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+        ti.setCourses(courses);
+
+        System.out.println("associated courses: " + ti.getCourses());
     }
 
     private void findInstructorWithCourses(AppDAO appDAO) {
