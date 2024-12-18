@@ -25,7 +25,7 @@ public class AdvmapApplication {
             System.out.println("Hello from runner");
 //            createInstructor(appDAO);
 //            findInstructor(appDAO);
-            deleteInstructor(appDAO);
+//            deleteInstructor(appDAO);
 
 //            findInstructorDetail(appDAO);
 //            deleteInstructorDetail(appDAO);
@@ -37,7 +37,17 @@ public class AdvmapApplication {
 
 //            updateInstructor(appDAO);
 //            updateCourse(appDAO);
+            deleteCourse(appDAO);
         };
+    }
+
+    private void deleteCourse(AppDAO appDAO) {
+        int theId = 10;
+
+        System.out.println("deleting course id: " + theId);
+        appDAO.deleteCourseById(theId);
+
+        System.out.println("Course deleted");
     }
 
     private void updateCourse(AppDAO appDAO) {
