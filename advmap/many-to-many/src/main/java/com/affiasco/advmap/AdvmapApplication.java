@@ -24,9 +24,25 @@ public class AdvmapApplication {
 
 //            createCourseAndStudents(appDAO);
 //            findCourseAndStudents(appDAO);
-            findStudentAndCourses(appDAO);
+//            findStudentAndCourses(appDAO);
+            addMoreCourses(appDAO);
 
         };
+    }
+
+    private void addMoreCourses(AppDAO appDAO) {
+        int theId = 2;
+        Student ts = appDAO.findStudentAndCourseByStudentId(theId);
+
+        Course tc1 = new Course("Rubik's Cube - How To Speed Cube");
+        Course tc2 = new Course("Atari 2600 - Game Development");
+
+        ts.addCourse(tc1);
+        ts.addCourse(tc2);
+
+        System.out.println("Updating student");
+        System.out.println("Courses: " + ts.getCourses());
+        appDAO.updateCourses(ts);
     }
 
     private void findStudentAndCourses(AppDAO appDAO) {
