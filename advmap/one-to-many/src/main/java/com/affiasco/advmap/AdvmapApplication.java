@@ -35,8 +35,22 @@ public class AdvmapApplication {
 //            findCoursesForInstructor(appDAO);
 //            findInstructorWithCoursesJoinFetch(appDAO);
 
-            updateInstructor(appDAO);
+//            updateInstructor(appDAO);
+            updateCourse(appDAO);
         };
+    }
+
+    private void updateCourse(AppDAO appDAO) {
+        int theId = 10;
+        System.out.println("Finding course by id: " + theId);
+        Course tc = appDAO.findCourseById(theId);
+
+        System.out.println("Updating course: " + tc);
+
+        tc.setTitle("Enjoy the Simple Things");
+        appDAO.updateCourse(tc);
+
+        System.out.println("Updated course: " + tc);
     }
 
     private void updateInstructor(AppDAO appDAO) {
