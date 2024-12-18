@@ -24,7 +24,7 @@ public class AdvmapApplication {
 
         return runner -> {
             System.out.println("Hello from runner");
-            
+
         };
     }
 
