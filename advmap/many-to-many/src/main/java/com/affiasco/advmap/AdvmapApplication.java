@@ -1,10 +1,7 @@
 package com.affiasco.advmap;
 
 import com.affiasco.advmap.dao.AppDAO;
-import com.affiasco.advmap.entity.Course;
-import com.affiasco.advmap.entity.Instructor;
-import com.affiasco.advmap.entity.InstructorDetail;
-import com.affiasco.advmap.entity.Review;
+import com.affiasco.advmap.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +22,23 @@ public class AdvmapApplication {
         return runner -> {
             System.out.println("Hello from runner");
 
+            createCourseAndStudents(appDAO);
+
         };
+    }
+
+    private void createCourseAndStudents(AppDAO appDAO) {
+        Course ti = new Course("Packman - How To Score One Million Points");
+
+        Student s1 = new Student("John", "Doe", "doe@gmail.com");
+        Student s2 = new Student("Mary", "Public", "public@gmail.com");
+
+        ti.addStudent(s1);
+        ti.addStudent(s2);
+
+        System.out.println("saving course: " + ti);
+        System.out.println("Associated students: " + ti.getStudents());
+        appDAO.saveCourse(ti);
     }
 
     private void deleteCourseAndReviews(AppDAO appDAO) {
