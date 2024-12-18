@@ -22,9 +22,18 @@ public class AdvmapApplication {
         return runner -> {
             System.out.println("Hello from runner");
 
-            createCourseAndStudents(appDAO);
+//            createCourseAndStudents(appDAO);
+            findCourseAndStudents(appDAO);
 
         };
+    }
+
+    private void findCourseAndStudents(AppDAO appDAO) {
+        int theId = 10;
+        Course tc = appDAO.findCourseAndStudentsByCourseId(theId);
+
+        System.out.println("course: " + tc);
+        System.out.println("students: " + tc.getStudents());
     }
 
     private void createCourseAndStudents(AppDAO appDAO) {
