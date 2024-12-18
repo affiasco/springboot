@@ -2,6 +2,9 @@ package com.affiasco.advmap.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -19,6 +22,14 @@ public class Student {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "student_id"), // refers to the student table
+            inverseJoinColumns = @JoinColumn(name = "course_id")) // refers to the course table
+    List<Course> courses;
 
     public Student() {
     }
@@ -59,6 +70,23 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    // convenience methods
+    public void addCourse(Course theCourse) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        }
+
+        courses.add(theCourse);
     }
 
     @Override
