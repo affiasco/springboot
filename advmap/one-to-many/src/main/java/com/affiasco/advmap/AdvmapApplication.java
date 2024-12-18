@@ -1,6 +1,7 @@
 package com.affiasco.advmap;
 
 import com.affiasco.advmap.dao.AppDAO;
+import com.affiasco.advmap.entity.Course;
 import com.affiasco.advmap.entity.Instructor;
 import com.affiasco.advmap.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -25,8 +26,33 @@ public class AdvmapApplication {
 //            deleteInstructor(appDAO);
 
 //            findInstructorDetail(appDAO);
-            deleteInstructorDetail(appDAO);
+//            deleteInstructorDetail(appDAO);
+
+            createInstructorWithCourses(appDAO);
         };
+    }
+
+    private void createInstructorWithCourses(AppDAO appDAO) {
+        Instructor ti = new Instructor("Rupert", "Schwarm", "schwarm@gmail.com");
+        InstructorDetail tid = new InstructorDetail("http://www.youtube.com/rs", "gaming");
+
+        ti.setInstructorDetail(tid); // associates the objects
+
+        // create courses
+        Course tempCourse1 = new Course("Air Guitar");
+        Course tempCourse2 = new Course("Pinball Masterclass");
+
+        ti.add(tempCourse1);
+        ti.add(tempCourse2);
+
+        System.out.println("Adding temp course: " + tempCourse1);
+        System.out.println("Adding temp course: " + tempCourse2);
+
+        System.out.println("Saving instructor: " + ti);
+        appDAO.save(ti); // also saves the courses because of CascadeType.PERSIST
+
+        System.out.println("Instructor Saved");
+
     }
 
     private void deleteInstructorDetail(AppDAO appDAO) {

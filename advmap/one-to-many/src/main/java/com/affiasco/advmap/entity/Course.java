@@ -11,7 +11,7 @@ public class Course {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "id")
+    @Column(name = "title")
     private String title;
 
     // do not want to delete the associated instructor
@@ -22,16 +22,16 @@ public class Course {
     public Course() {
     }
 
+    public Course(String title) {
+        this.title = title;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Course(String title) {
-        this.title = title;
     }
 
     public String getTitle() {
