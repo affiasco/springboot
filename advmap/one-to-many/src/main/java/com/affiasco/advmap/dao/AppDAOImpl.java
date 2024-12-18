@@ -36,6 +36,13 @@ public class AppDAOImpl implements AppDAO {
     @Transactional
     public void deleteInstructorById(int theId) {
         Instructor ti = findInstructorById(theId);
+
+        List<Course> courses = ti.getCourses();
+
+        for (Course course : courses) {
+            course.setInstructor(null); // remove instructor from those courses and prevents a constraint violation
+        }
+
         entityManager.remove(ti); // CascadeType.ALL will also delete the instructor_Detail
     }
 

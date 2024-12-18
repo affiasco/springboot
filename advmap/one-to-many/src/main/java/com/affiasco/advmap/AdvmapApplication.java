@@ -25,7 +25,7 @@ public class AdvmapApplication {
             System.out.println("Hello from runner");
 //            createInstructor(appDAO);
 //            findInstructor(appDAO);
-//            deleteInstructor(appDAO);
+            deleteInstructor(appDAO);
 
 //            findInstructorDetail(appDAO);
 //            deleteInstructorDetail(appDAO);
@@ -36,7 +36,7 @@ public class AdvmapApplication {
 //            findInstructorWithCoursesJoinFetch(appDAO);
 
 //            updateInstructor(appDAO);
-            updateCourse(appDAO);
+//            updateCourse(appDAO);
         };
     }
 
