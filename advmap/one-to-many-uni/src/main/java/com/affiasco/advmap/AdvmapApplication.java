@@ -26,8 +26,14 @@ public class AdvmapApplication {
             System.out.println("Hello from runner");
 
 //            createCourseAndReviews(appDAO);
-            retrieveCourseAndReviews(appDAO);
+//            retrieveCourseAndReviews(appDAO);
+            deleteCourseAndReviews(appDAO);
         };
+    }
+
+    private void deleteCourseAndReviews(AppDAO appDAO) {
+        int theId = 10;
+        appDAO.deleteCourseById(theId); // deletes course and bc of cascade.ALL the reviews
     }
 
     private void retrieveCourseAndReviews(AppDAO appDAO) {
