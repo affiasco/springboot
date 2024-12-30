@@ -27,6 +27,10 @@ public class AopApplication {
         // call the business methods
         theAccountDAO.addAccount();
         theMembershipDAO.addAccount();
+        theAccountDAO.addAccount2(new Account());
+        theAccountDAO.addAccount3(new Account(), true);
+        theAccountDAO.completedWork();
         theMembershipDAO.addNewMember();
+        theMembershipDAO.sleep();
     }
 }
