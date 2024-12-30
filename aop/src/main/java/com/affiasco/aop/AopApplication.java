@@ -1,6 +1,7 @@
 package com.affiasco.aop;
 
 import com.affiasco.aop.dao.AccountDAO;
+import com.affiasco.aop.dao.MembershipDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,18 +15,17 @@ public class AopApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO) {
+    public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
         return runner -> {
             System.out.println("In the runner");
 
-            demoTheBeforeAdice(theAccountDAO);
+            demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
         };
     }
 
-    private void demoTheBeforeAdice(AccountDAO theAccountDAO) {
-        // call the business method
+    private void demoTheBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
+        // call the business methods
         theAccountDAO.addAccount();
+        theMembershipDAO.addAccount();
     }
-
-
 }
