@@ -12,6 +12,15 @@ public class LoggingAspect {
     @Pointcut("execution(* com.affiasco.aop.dao.*.*(..))")
     private void forDaoPackage() {}
 
+    @Pointcut("execution(* com.affiasco.aop.dao.*.get*(..))")
+    private void getter() {}
+
+    @Pointcut("execution(* com.affiasco.aop.dao.*.set*(..))")
+    private void setter() {}
+
+    @Pointcut("forDaoPackage() && !(getter()  || setter())")
+    private void forDaoPackageNoGetterSetter() {}
+
 //    add related advices for logging
 //    @Before("execution(public void addAccount())") // run this code BEFORE target method 'public void addAccount()'
 //    @Before("execution(public void com.affiasco.aop.dao.AccountDAO.addAccount())") // need the fully qualified className to be specific to an individual account
@@ -21,12 +30,12 @@ public class LoggingAspect {
 //    @Before("execution(* com.affiasco..add*(..))") // match on any number of args
 //    @Before("execution(* add*(com.affiasco.aop.Account, ..))") // match on account, any number of args
 //    @Before("execution(* com.affiasco.aop.dao.*.*(..))") // match on any class (*), method(*) within a package
-    @Before("forDaoPackage()") // use the defined pointcut expression
+    @Before("forDaoPackageNoGetterSetter()") // use the defined pointcut expression
     public void beforeAddAccountAdvice() {
         System.out.println("\n=====>>> Executing @Before advice on methods() <<<=====");
     }
 
-    @Before("forDaoPackage()") // reuse the pointcut expression
+    @Before("forDaoPackageNoGetterSetter()") // reuse the pointcut expression
     public void performApiAnalytics(){
         System.out.println("=====>>> Performing API analytics <<<=====");
     }

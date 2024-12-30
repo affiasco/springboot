@@ -24,13 +24,25 @@ public class AopApplication {
     }
 
     private void demoTheBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
-        // call the business methods
+        // call the account business methods
+        System.out.println("\n***** ACCOUNT *****");
         theAccountDAO.addAccount();
-        theMembershipDAO.addAccount();
         theAccountDAO.addAccount2(new Account());
         theAccountDAO.addAccount3(new Account(), true);
         theAccountDAO.completedWork();
+
+        System.out.println("\n***** ACCT GETTER/SETTER *****\n");
+        theAccountDAO.setName("foobar");
+        theAccountDAO.setServiceCode("silver");
+
+        String name = theAccountDAO.getName();
+        String serviceCode = theAccountDAO.getServiceCode();
+
+        System.out.println("\n***** MEMBERSHIP *****");
+        theMembershipDAO.addAccount();
         theMembershipDAO.addNewMember();
         theMembershipDAO.sleep();
+
+
     }
 }
