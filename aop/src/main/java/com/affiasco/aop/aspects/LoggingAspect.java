@@ -2,25 +2,13 @@ package com.affiasco.aop.aspects;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(2)
 public class LoggingAspect {
-//    pointcut declaration
-    @Pointcut("execution(* com.affiasco.aop.dao.*.*(..))")
-    private void forDaoPackage() {}
-
-    @Pointcut("execution(* com.affiasco.aop.dao.*.get*(..))")
-    private void getter() {}
-
-    @Pointcut("execution(* com.affiasco.aop.dao.*.set*(..))")
-    private void setter() {}
-
-    @Pointcut("forDaoPackage() && !(getter()  || setter())")
-    private void forDaoPackageNoGetterSetter() {}
-
 //    add related advices for logging
 //    @Before("execution(public void addAccount())") // run this code BEFORE target method 'public void addAccount()'
 //    @Before("execution(public void com.affiasco.aop.dao.AccountDAO.addAccount())") // need the fully qualified className to be specific to an individual account
@@ -30,13 +18,8 @@ public class LoggingAspect {
 //    @Before("execution(* com.affiasco..add*(..))") // match on any number of args
 //    @Before("execution(* add*(com.affiasco.aop.Account, ..))") // match on account, any number of args
 //    @Before("execution(* com.affiasco.aop.dao.*.*(..))") // match on any class (*), method(*) within a package
-    @Before("forDaoPackageNoGetterSetter()") // use the defined pointcut expression
+    @Before("com.affiasco.aop.aspects.AopExpressions.forDaoPackageNoGetterSetter()") // use the defined pointcut expression
     public void beforeAddAccountAdvice() {
-        System.out.println("\n=====>>> Executing @Before advice on methods() <<<=====");
-    }
-
-    @Before("forDaoPackageNoGetterSetter()") // reuse the pointcut expression
-    public void performApiAnalytics(){
-        System.out.println("=====>>> Performing API analytics <<<=====");
+        System.out.println("=====>>> Executing @Before advice on methods() <<<=====");
     }
 }
