@@ -2,7 +2,10 @@ package com.affiasco.aop.dao;
 
 import com.affiasco.aop.Account;
 
+import java.util.List;
+
 public interface AccountDAO {
+    List<Account> findAccounts();
 
     void addAccount();
 
@@ -19,5 +22,4 @@ public interface AccountDAO {
     String getServiceCode();
 
     void setServiceCode(String serviceCode);
-
 }

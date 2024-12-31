@@ -3,10 +3,29 @@ package com.affiasco.aop.dao;
 import com.affiasco.aop.Account;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class AccountDAOImpl implements AccountDAO {
     private String name;
     private String serviceCode;
+
+    @Override
+    public List<Account> findAccounts() {
+        List<Account> myAccounts = new ArrayList<>();
+
+        // sample accounts
+        Account a1 = new Account("Jon", "Silver");
+        Account a2 = new Account("Mads", "Platnium");
+        Account a3 = new Account("Luka", "Gold");
+
+        myAccounts.add(a1);
+        myAccounts.add(a2);
+        myAccounts.add(a3);
+        
+        return myAccounts;
+    }
 
     @Override
     public void addAccount() {
