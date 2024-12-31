@@ -1,7 +1,10 @@
 package com.affiasco.aop.aspects;
 
+import com.affiasco.aop.Account;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +22,25 @@ public class LoggingAspect {
 //    @Before("execution(* add*(com.affiasco.aop.Account, ..))") // match on account, any number of args
 //    @Before("execution(* com.affiasco.aop.dao.*.*(..))") // match on any class (*), method(*) within a package
     @Before("com.affiasco.aop.aspects.AopExpressions.forDaoPackageNoGetterSetter()") // use the defined pointcut expression
-    public void beforeAddAccountAdvice() {
+    public void beforeAddAccountAdvice(JoinPoint theJoinPoint) { // joinpoint gives metadata about method being executed
         System.out.println("=====>>> Executing @Before advice on methods() <<<=====");
+
+        // display method signature
+        MethodSignature methSig = (MethodSignature) theJoinPoint.getSignature();
+        System.out.println("Method: " + methSig);
+
+        // display method args
+        Object[] args = theJoinPoint.getArgs();
+
+        for (Object arg : args) {
+            System.out.println(arg);
+
+            if (arg instanceof Account){
+                //downcast and print Account specifics
+                Account theAccount = (Account) arg;
+                System.out.println("from meth args account name: " + theAccount.getName());
+                System.out.println("from meth args account level: " + theAccount.getLevel());
+            }
+        }
     }
 }

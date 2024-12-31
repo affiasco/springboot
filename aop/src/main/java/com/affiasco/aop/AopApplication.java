@@ -27,8 +27,12 @@ public class AopApplication {
         // call the account business methods
         System.out.println("\n***** ACCOUNT *****");
         theAccountDAO.addAccount();
-        theAccountDAO.addAccount2(new Account());
-        theAccountDAO.addAccount3(new Account(), true);
+
+        Account a1 = new Account("First", "Silver");
+        theAccountDAO.addAccount2(a1);
+
+        Account a2 = new Account("Second", "Titanium");
+        theAccountDAO.addAccount3(a2, true);
         theAccountDAO.completedWork();
 
         System.out.println("\n***** ACCT GETTER/SETTER *****\n");
