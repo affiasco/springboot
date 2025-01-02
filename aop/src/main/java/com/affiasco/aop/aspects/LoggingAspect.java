@@ -3,6 +3,7 @@ package com.affiasco.aop.aspects;
 import com.affiasco.aop.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -66,5 +67,14 @@ public class LoggingAspect {
             a.setName(theUpperName);
         }
         System.out.println("modification completed");
+    }
+
+    @AfterThrowing(
+            pointcut = "execution(* com.affiasco.aop.dao.AccountDAO.findAccounts(..))",
+            throwing = "exc") // has to match passed Throwable param name
+    public void afterThrowingFindAccountsAdvice(JoinPoint theJoinPoint, Throwable exc) {
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("====> Executing @AfterThrowing on method: " + method);
+        System.out.println("====> exception being thrown: " + exc);
     }
 }
