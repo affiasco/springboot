@@ -7,6 +7,8 @@ import java.util.List;
 public interface AccountDAO {
     List<Account> findAccounts();
 
+    List<Account> findAccounts(boolean flag);
+
     void addAccount();
 
     void addAccount2(Account theAccount);
@@ -22,4 +24,6 @@ public interface AccountDAO {
     String getServiceCode();
 
     void setServiceCode(String serviceCode);
+
+
 }

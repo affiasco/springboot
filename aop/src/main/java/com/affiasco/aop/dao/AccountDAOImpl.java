@@ -13,6 +13,18 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public List<Account> findAccounts() {
+        // happy path
+        return findAccounts(false);
+    }
+
+    @Override
+    public List<Account> findAccounts(boolean flag) {
+
+        // simulate exception:
+        if (flag) {
+            throw new RuntimeException("find accounts exception");
+        }
+        
         List<Account> myAccounts = new ArrayList<>();
 
         // sample accounts
@@ -23,7 +35,7 @@ public class AccountDAOImpl implements AccountDAO {
         myAccounts.add(a1);
         myAccounts.add(a2);
         myAccounts.add(a3);
-        
+
         return myAccounts;
     }
 
