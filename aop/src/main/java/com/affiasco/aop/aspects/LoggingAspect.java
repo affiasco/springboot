@@ -2,10 +2,7 @@ package com.affiasco.aop.aspects;
 
 import com.affiasco.aop.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -76,5 +73,12 @@ public class LoggingAspect {
         String method = theJoinPoint.getSignature().toShortString();
         System.out.println("====> Executing @AfterThrowing on method: " + method);
         System.out.println("====> exception being thrown: " + exc);
+    }
+
+    @After("execution(* com.affiasco.aop.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint){
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("====> Executing @After (finally) on method: " + method);
+
     }
 }

@@ -23,8 +23,25 @@ public class AopApplication {
 
 //            demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
 //            demoTheAfterReturnAdvice(theAccountDAO);
-            demoTheAfterThrowingAdvice(theAccountDAO);
+//            demoTheAfterThrowingAdvice(theAccountDAO);
+            demoTheAfterAdvice(theAccountDAO);
         };
+    }
+
+    private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
+        System.out.println("**** Main Program: demoTheAfterAdvice ****");
+        System.out.println("-------");
+        List<Account> accounts = null;
+        try {
+            boolean flag = false; // add boolean flag to simulate exception
+            accounts = theAccountDAO.findAccounts(flag);
+        } catch (Exception exc) {
+            System.out.println("caught exception: " + exc);
+        }
+
+        System.out.println(accounts);
+
+        System.out.println("\n");
     }
 
     private void demoTheAfterThrowingAdvice(AccountDAO theAccountDAO) {
@@ -41,7 +58,6 @@ public class AopApplication {
         System.out.println(accounts);
 
         System.out.println("\n");
-z
     }
 
     private void demoTheAfterReturnAdvice(AccountDAO theAccountDAO) {
