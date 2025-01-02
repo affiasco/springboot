@@ -2,6 +2,7 @@ package com.affiasco.aop.aspects;
 
 import com.affiasco.aop.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -76,9 +77,26 @@ public class LoggingAspect {
     }
 
     @After("execution(* com.affiasco.aop.dao.AccountDAO.findAccounts(..))")
-    public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint){
+    public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint) {
         String method = theJoinPoint.getSignature().toShortString();
         System.out.println("====> Executing @After (finally) on method: " + method);
 
+    }
+
+    @Around("execution(* com.affiasco.aop.service.*.getFortune())")
+    public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+        String method = theProceedingJoinPoint.getSignature().toShortString();
+        System.out.println("====> Executing @Around on method: " + method);
+
+        long begin = System.currentTimeMillis();
+
+        Object result = theProceedingJoinPoint.proceed(); // executes the method
+
+        long end = System.currentTimeMillis();
+
+        long duration = end - begin;
+        System.out.println("====> Duration: " + duration / 1000.0 + " seconds");
+
+        return result;
     }
 }

@@ -2,6 +2,7 @@ package com.affiasco.aop;
 
 import com.affiasco.aop.dao.AccountDAO;
 import com.affiasco.aop.dao.MembershipDAO;
+import com.affiasco.aop.service.TrafficFortuneService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,21 +18,34 @@ public class AopApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
+    public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO, TrafficFortuneService theTrafficFortuneService) {
         return runner -> {
             System.out.println("In the runner");
 
 //            demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
 //            demoTheAfterReturnAdvice(theAccountDAO);
 //            demoTheAfterThrowingAdvice(theAccountDAO);
-            demoTheAfterAdvice(theAccountDAO);
+//            demoTheAfterAdvice(theAccountDAO);
+
+            demoTheAroundAdvice(theTrafficFortuneService);
         };
+    }
+
+    private void demoTheAroundAdvice(TrafficFortuneService theTrafficFortuneService) {
+        System.out.println("\nMain Program: demoTheAroundAdvice");
+        System.out.println("Calling getFortune()");
+
+        String data = theTrafficFortuneService.getFortune();
+
+        System.out.println("Fortune: " + data);
+        System.out.println("Done");
     }
 
     private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
         System.out.println("**** Main Program: demoTheAfterAdvice ****");
         System.out.println("-------");
         List<Account> accounts = null;
+
         try {
             boolean flag = false; // add boolean flag to simulate exception
             accounts = theAccountDAO.findAccounts(flag);
@@ -48,6 +62,7 @@ public class AopApplication {
         System.out.println("**** Main Program: demoTheAfterThrowingAdvice ****");
         System.out.println("-------");
         List<Account> accounts = null;
+        
         try {
             boolean flag = true; // add boolean flag to simulate exception
             accounts = theAccountDAO.findAccounts(flag);
