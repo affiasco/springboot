@@ -28,8 +28,20 @@ public class AopApplication {
 //            demoTheAfterAdvice(theAccountDAO);
 
 //            demoTheAroundAdvice(theTrafficFortuneService);
-            demoTheAroundAdviceWithException(theTrafficFortuneService);
+//            demoTheAroundAdviceWithException(theTrafficFortuneService);
+            demoTheAroundAdviceReThrowException(theTrafficFortuneService);
         };
+    }
+
+    private void demoTheAroundAdviceReThrowException(TrafficFortuneService theTrafficFortuneService) {
+        System.out.println("\nMain Program: demoTheAroundAdviceReThrowException");
+        System.out.println("Calling getFortune()");
+
+        boolean flag = true;
+        String data = theTrafficFortuneService.getFortune(flag);
+
+        System.out.println("Fortune: " + data);
+        System.out.println("Done");
     }
 
     private void demoTheAroundAdviceWithException(TrafficFortuneService theTrafficFortuneService) {

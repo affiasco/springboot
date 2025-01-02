@@ -98,8 +98,8 @@ public class LoggingAspect {
             // Log the exception message
             System.out.println("Exception caught in @Around advice: " + e.getMessage());
 
-            // Provide a fallback value
-            result = "Major accident!";
+            // rethrow exception to main program
+            throw e;
         }
 
         long end = System.currentTimeMillis();
