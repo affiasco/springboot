@@ -27,8 +27,20 @@ public class AopApplication {
 //            demoTheAfterThrowingAdvice(theAccountDAO);
 //            demoTheAfterAdvice(theAccountDAO);
 
-            demoTheAroundAdvice(theTrafficFortuneService);
+//            demoTheAroundAdvice(theTrafficFortuneService);
+            demoTheAroundAdviceWithException(theTrafficFortuneService);
         };
+    }
+
+    private void demoTheAroundAdviceWithException(TrafficFortuneService theTrafficFortuneService) {
+        System.out.println("\nMain Program: demoTheAroundAdviceWithException");
+        System.out.println("Calling getFortune()");
+
+        boolean flag = true;
+        String data = theTrafficFortuneService.getFortune(flag);
+
+        System.out.println("Fortune: " + data);
+        System.out.println("Done");
     }
 
     private void demoTheAroundAdvice(TrafficFortuneService theTrafficFortuneService) {
@@ -62,7 +74,7 @@ public class AopApplication {
         System.out.println("**** Main Program: demoTheAfterThrowingAdvice ****");
         System.out.println("-------");
         List<Account> accounts = null;
-        
+
         try {
             boolean flag = true; // add boolean flag to simulate exception
             accounts = theAccountDAO.findAccounts(flag);

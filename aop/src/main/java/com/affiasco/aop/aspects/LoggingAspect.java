@@ -83,17 +83,26 @@ public class LoggingAspect {
 
     }
 
-    @Around("execution(* com.affiasco.aop.service.*.getFortune())")
+    @Around("execution(* com.affiasco.aop.service.*.getFortune(..))")
     public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
         String method = theProceedingJoinPoint.getSignature().toShortString();
         System.out.println("====> Executing @Around on method: " + method);
 
         long begin = System.currentTimeMillis();
 
-        Object result = theProceedingJoinPoint.proceed(); // executes the method
+        Object result = null;
+
+        try {
+            result = theProceedingJoinPoint.proceed(); // Executes the method
+        } catch (Exception e) {
+            // Log the exception message
+            System.out.println("Exception caught in @Around advice: " + e.getMessage());
+
+            // Provide a fallback value
+            result = "Major accident!";
+        }
 
         long end = System.currentTimeMillis();
-
         long duration = end - begin;
         System.out.println("====> Duration: " + duration / 1000.0 + " seconds");
 
